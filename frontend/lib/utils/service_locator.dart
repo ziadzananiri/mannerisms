@@ -11,7 +11,8 @@ import 'package:mannerisms/signup/viewmodel/signup_viewmodel.dart';
 import 'package:mannerisms/signup/repository/signup_repository.dart';
 import 'package:mannerisms/home/repository/culture_repository.dart';
 import 'package:mannerisms/home/viewmodel/culture_viewmodel.dart';
-
+import 'package:mannerisms/menu/viewmodel/menu_viewmodel.dart';
+import 'package:mannerisms/utils/theme_provider.dart';
 class ServiceLocator {
   static final ServiceLocator _instance = ServiceLocator._internal();
   factory ServiceLocator() => _instance;
@@ -29,8 +30,8 @@ class ServiceLocator {
   late final SignupViewModel signupViewModel;
   late final CultureRepository cultureRepository;
   late final CultureViewModel cultureViewModel;
-
-
+  late final MenuViewModel menuViewModel;
+  late final ThemeProvider themeProvider;
   void init() {
     // Initialize services
     authInterceptor = AuthInterceptor();
@@ -38,23 +39,25 @@ class ServiceLocator {
     // Initialize repositories
     questionRepository = QuestionRepository();
     progressRepository = ProgressRepository();
+    cultureRepository = CultureRepository();
+    loginRepository = LoginRepository();
+    signupRepository = SignupRepository();
     
     // Initialize view models
     authViewModel = AuthViewModel();
-    cultureRepository = CultureRepository();
     cultureViewModel = CultureViewModel(cultureRepository);
     homeViewModel = HomeViewModel(questionRepository, cultureViewModel);
     profileViewModel = ProfileViewModel(progressRepository);
-    loginRepository = LoginRepository();
     loginViewModel = LoginViewModel(
       repository: loginRepository,
       authInterceptor: authInterceptor,
       authViewModel: authViewModel,
     );
-    signupRepository = SignupRepository();
     signupViewModel = SignupViewModel(
       repository: signupRepository,
     );
+    menuViewModel = MenuViewModel();
+    themeProvider = ThemeProvider();
   }
 
   List<ChangeNotifierProvider> get providers => [
@@ -64,5 +67,7 @@ class ServiceLocator {
     ChangeNotifierProvider<LoginViewModel>.value(value: loginViewModel),
     ChangeNotifierProvider<SignupViewModel>.value(value: signupViewModel),
     ChangeNotifierProvider<CultureViewModel>.value(value: cultureViewModel),
+    ChangeNotifierProvider<MenuViewModel>.value(value: menuViewModel),
+    ChangeNotifierProvider<ThemeProvider>.value(value: themeProvider),
   ];
 } 

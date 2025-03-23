@@ -7,6 +7,7 @@ import 'package:mannerisms/utils/navigation_service.dart';
 import 'package:mannerisms/login/view/login_view.dart';
 import 'package:mannerisms/main_screen.dart';
 import 'package:mannerisms/services/auth_viewmodel.dart';
+import 'package:mannerisms/utils/theme_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -52,14 +53,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: serviceLocator.providers,
-      child: MaterialApp(
-        title: 'Mannerisms',
-        theme: AppTheme.darkTheme,
-        darkTheme: AppTheme.darkTheme,
-        themeMode: ThemeMode.dark,
-        navigatorKey: NavigationService().navigatorKey,
-        onGenerateRoute: NavigationService().generateRoute,
-        home: const AuthWrapper(),
+      child: Consumer<ThemeProvider>(
+        builder: (context, themeProvider, child) {
+          return MaterialApp(
+            title: 'Mannerisms',
+            theme: themeProvider.theme,
+            navigatorKey: NavigationService().navigatorKey,
+            onGenerateRoute: NavigationService().generateRoute,
+            home: const AuthWrapper(),
+          );
+        },
       ),
     );
   }

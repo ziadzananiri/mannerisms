@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mannerisms/login/view/login_view.dart';
 import 'package:mannerisms/questions/view/home_view.dart';
 import 'package:mannerisms/profile/view/profile_view.dart';
-import 'package:mannerisms/menu/view/settings_view.dart';
+import 'package:mannerisms/menu/view/menu_view.dart';
 import 'package:mannerisms/utils/constants.dart';
 import 'package:mannerisms/home/view/culture_selection_view.dart';
 
@@ -22,7 +22,7 @@ class NavigationService {
       case AppConstants.profileRoute:
         return MaterialPageRoute(builder: (_) => const ProfileView());
       case AppConstants.settingsRoute:
-        return MaterialPageRoute(builder: (_) => const SettingsView());
+        return MaterialPageRoute(builder: (_) => const MenuView());
       case AppConstants.loginRoute:
         return MaterialPageRoute(builder: (_) => const LoginView());
       default:

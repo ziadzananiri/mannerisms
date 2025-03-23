@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mannerisms/questions/view/home_view.dart';
 import 'package:mannerisms/profile/view/profile_view.dart';
-import 'package:mannerisms/menu/view/settings_view.dart';
+import 'package:mannerisms/menu/view/menu_view.dart';
 import 'package:mannerisms/home/view/culture_selection_view.dart';
 import 'package:mannerisms/home/viewmodel/culture_viewmodel.dart';
 import 'package:provider/provider.dart';
@@ -20,7 +20,7 @@ class _MainScreenState extends State<MainScreen> {
   final List<Widget> _screens = [
     const HomeView(),
     const ProfileView(),
-    const SettingsView(),
+    const MenuView(),
   ];
 
   void _onItemTapped(int index) {
