@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:mannerisms/questions/view/home_view.dart';
 import 'package:mannerisms/profile/view/profile_view.dart';
 import 'package:mannerisms/menu/view/settings_view.dart';
+import 'package:mannerisms/home/view/culture_selection_view.dart';
+import 'package:mannerisms/home/viewmodel/culture_viewmodel.dart';
+import 'package:provider/provider.dart';
+
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -27,6 +31,10 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final cultureViewModel = context.read<CultureViewModel>();
+    if (cultureViewModel.selectedCulture == null) {
+      return const CultureSelectionView();
+    }
     return Scaffold(
       body: _screens[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(

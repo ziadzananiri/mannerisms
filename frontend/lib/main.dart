@@ -12,7 +12,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GoogleFonts.pendingFonts();
   
-  // Initialize services
   final serviceLocator = ServiceLocator();
   serviceLocator.init();
   

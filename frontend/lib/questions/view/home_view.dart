@@ -6,6 +6,7 @@ import 'package:mannerisms/questions/model/question_model.dart';
 import 'package:mannerisms/services/auth_interceptor.dart';
 import 'package:mannerisms/login/view/login_view.dart';
 import 'package:mannerisms/home/view/culture_selection_view.dart';
+import 'package:mannerisms/home/viewmodel/culture_viewmodel.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -22,7 +23,15 @@ class _HomeViewState extends State<HomeView> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<HomeViewModel>().loadQuestions();
+      final cultureViewModel = context.read<CultureViewModel>();
+      if (cultureViewModel.selectedCulture == null) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const CultureSelectionView()),
+        );
+      } else {
+        context.read<HomeViewModel>().loadQuestions();
+      }
     });
   }
 

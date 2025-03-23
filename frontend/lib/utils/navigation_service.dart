@@ -26,15 +26,7 @@ class NavigationService {
       case AppConstants.loginRoute:
         return MaterialPageRoute(builder: (_) => const LoginView());
       default:
-        return MaterialPageRoute(builder: (_) => const LoginView());
+        return MaterialPageRoute(builder: (_) => const CultureSelectionView());
     }
-  }
-
-  Future<dynamic> navigateTo(String routeName) {
-    return navigatorKey.currentState!.pushNamed(routeName);
-  }
-
-  void goBack() {
-    return navigatorKey.currentState!.pop();
   }
 } 
