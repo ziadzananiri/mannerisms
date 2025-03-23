@@ -2,6 +2,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:mannerisms/utils/constants.dart';
+import 'package:flutter/foundation.dart';
 
 class AuthInterceptor {
   static const String baseUrl = AppConstants.apiUrl;
@@ -51,7 +52,7 @@ class AuthInterceptor {
 
   Future<Map<String, String>> getAuthHeaders() async {
     final accessToken = await getAccessToken();
-    print('Retrieved access token: $accessToken'); // Debug log
+    debugPrint('Retrieved access token: $accessToken');
     if (accessToken == null) {
       throw Exception('No access token found');
     }

@@ -7,7 +7,7 @@ class AuthViewModel extends ChangeNotifier {
   final AuthInterceptor _authInterceptor = AuthInterceptor();
   final HttpService _httpService = HttpService();
   bool _isAuthenticated = false;
-  bool _isLoading = true;  // Start with loading true
+  bool _isLoading = true;
   String _error = '';
 
   bool get isAuthenticated => _isAuthenticated;
@@ -15,16 +15,15 @@ class AuthViewModel extends ChangeNotifier {
   String get error => _error;
 
   AuthViewModel() {
-    // Check for stored tokens when the view model is created
     checkAuthStatus();
   }
 
   Future<bool> checkAuthStatus() async {
     try {
       final accessToken = await _authInterceptor.getAccessToken();
-      print('Checking auth status, token: $accessToken'); // Debug log
+      debugPrint('Checking auth status, token: $accessToken');
       _isAuthenticated = accessToken != null;
-      print('Is authenticated: $_isAuthenticated'); // Debug log
+      debugPrint('Is authenticated: $_isAuthenticated');
       _error = '';
       notifyListeners();
       return _isAuthenticated;
@@ -85,7 +84,6 @@ class AuthViewModel extends ChangeNotifier {
         requiresAuth: false,
       );
 
-      // After successful signup, login the user
       return await login(username, password);
     } catch (e) {
       _error = e.toString();

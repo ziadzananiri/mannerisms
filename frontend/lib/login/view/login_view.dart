@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:mannerisms/login/viewmodel/login_viewmodel.dart';
-import 'package:mannerisms/main_screen.dart';
 import 'package:mannerisms/signup/view/signup_view.dart';
 import 'package:mannerisms/utils/constants.dart';
 
@@ -31,7 +30,7 @@ class LoginViewState extends State<LoginView> {
             _passwordController.text,
           );
       
-      if (success && context.mounted) {
+      if (success && mounted) {
         Navigator.pushReplacementNamed(context, AppConstants.cultureRoute);
       }
     }

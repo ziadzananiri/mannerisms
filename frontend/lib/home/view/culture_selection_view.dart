@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:mannerisms/home/viewmodel/culture_viewmodel.dart';
 import 'package:mannerisms/main_screen.dart';
-import 'package:mannerisms/utils/constants.dart';
 
 class CultureSelectionView extends StatelessWidget {
   const CultureSelectionView({super.key});

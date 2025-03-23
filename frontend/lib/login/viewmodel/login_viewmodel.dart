@@ -4,7 +4,6 @@ import 'package:mannerisms/login/model/login_model.dart';
 import 'package:mannerisms/login/repository/login_repository.dart';
 import 'package:mannerisms/services/auth_viewmodel.dart';
 import 'package:flutter/material.dart';
-import 'package:mannerisms/utils/constants.dart';
 
 class LoginViewModel extends ChangeNotifier {
   final LoginRepository _repository;
@@ -32,21 +31,18 @@ class LoginViewModel extends ChangeNotifier {
 
       final loginData = LoginModel(email: email, password: password);
       final response = await _repository.login(loginData);
-      print('Login response: $response'); // Debug log
+      debugPrint('Login response: $response');
 
-      if (response != null) {
-        await _authInterceptor.saveTokens(
-          response['access_token'],
-          response['refresh_token'],
-        );
-        print('Tokens saved successfully'); // Debug log
-        _authViewModel.setAuthenticated(true);
-        return true;
-      }
-      return false;
+      await _authInterceptor.saveTokens(
+        response['access_token'],
+        response['refresh_token'],
+      );
+      debugPrint('Tokens saved successfully');
+      _authViewModel.setAuthenticated(true);
+      return true;
     } catch (e) {
       _error = e.toString().replaceAll('Exception: ', '');
-      print('Login error: $_error'); // Debug log
+      debugPrint('Login error: $_error');
       return false;
     } finally {
       _isLoading = false;
