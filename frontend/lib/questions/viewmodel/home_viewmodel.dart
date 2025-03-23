@@ -2,13 +2,10 @@ import 'package:flutter/foundation.dart';
 import 'package:mannerisms/questions/model/question_model.dart';
 import 'package:mannerisms/questions/repository/question_repository.dart';
 import 'package:mannerisms/home/viewmodel/culture_viewmodel.dart';
-import 'package:mannerisms/services/auth_interceptor.dart';
-import 'dart:convert';
 
 class HomeViewModel extends ChangeNotifier {
   final QuestionRepository _repository;
   final CultureViewModel _cultureViewModel;
-  final AuthInterceptor _authInterceptor = AuthInterceptor();
   List<QuestionModel> _questions = [];
   bool _isLoading = false;
   String? _error;
