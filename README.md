@@ -6,14 +6,15 @@ A mobile application designed to help users improve their social skills and mann
 
 - User Authentication (Login/Signup)
 - Interactive Learning Modules
-- Profile Management
-- Settings Management
+- Profile Management (Future)
+- Settings Management (Future)
 - Modern Black and Purple Theme
 
 ## Tech Stack
 
 - Backend: FastAPI (Python)
 - Frontend: Flutter with MVVM Architecture
+- Database: MongoDB
 - Authentication: JWT Tokens
 
 ## Project Structure
