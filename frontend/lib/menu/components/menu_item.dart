@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:mannerisms/services/auth_viewmodel.dart';
 import 'package:mannerisms/menu/model/menu_model.dart';
-import 'package:mannerisms/utils/theme.dart';
 import 'package:mannerisms/utils/theme_provider.dart';
 
 class MenuItemComponent extends StatelessWidget {

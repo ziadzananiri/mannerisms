@@ -18,6 +18,8 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   final _authInterceptor = AuthInterceptor();
   bool _isAnswering = false;
+  String selectedAnswer = '';
+  String answerResult = '';
 
   @override
   void initState() {
@@ -71,6 +73,10 @@ class _HomeViewState extends State<HomeView> {
             duration: const Duration(seconds: 2),
           ),
         );
+        setState(() {
+          selectedAnswer = answer;
+          answerResult = result['correct'] ? 'Correct' : 'Incorrect';
+        });
       }
     } catch (e) {
       if (mounted) {
@@ -169,6 +175,7 @@ class _HomeViewState extends State<HomeView> {
                             onPressed: _isAnswering ? null : () => _handleAnswer(question, option),
                             style: ElevatedButton.styleFrom(
                               padding: const EdgeInsets.symmetric(vertical: 12),
+                              backgroundColor: selectedAnswer == option ? answerResult == 'Correct' ? Colors.green : Colors.red : Theme.of(context).colorScheme.primary,
                             ),
                             child: Text(option),
                           ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mannerisms/utils/theme.dart';
 import 'package:mannerisms/utils/service_locator.dart';
 import 'package:mannerisms/utils/navigation_service.dart';
 import 'package:mannerisms/login/view/login_view.dart';
