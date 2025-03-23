@@ -1,6 +1,6 @@
 # Mannerisms
 
-A mobile application designed to help users improve their social skills and mannerisms through interactive learning and practice.
+A mobile application designed to help users improve their social skills, mannerisms, and learn about different cultures through interactive learning and practice.
 
 ## Features
 
