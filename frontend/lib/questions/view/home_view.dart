@@ -20,6 +20,7 @@ class _HomeViewState extends State<HomeView> {
   bool _isAnswering = false;
   String selectedAnswer = '';
   String answerResult = '';
+  bool showExplanation = false;
 
   @override
   void initState() {
@@ -76,6 +77,7 @@ class _HomeViewState extends State<HomeView> {
         setState(() {
           selectedAnswer = answer;
           answerResult = result['correct'] ? 'Correct' : 'Incorrect';
+          showExplanation = result['correct'] ? true : false;
         });
       }
     } catch (e) {
@@ -182,7 +184,7 @@ class _HomeViewState extends State<HomeView> {
                         ),
                       )),
                       const SizedBox(height: 16),
-                      if (viewModel.lastCorrectAnswerTag == question.tag)
+                      if (viewModel.lastCorrectAnswerTag == question.tag && showExplanation)
                         Text(
                           'Explanation: ${question.explanation}',
                           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
