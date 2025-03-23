@@ -32,6 +32,8 @@ A mobile application designed to help users improve their social skills and mann
 3. Install dependencies: `pip install -r requirements.txt`
 4. Run the server: `uvicorn app.main:app --reload`
 
+Note: You will need a .env file containing a MONGO_URI and JWT_SECRET string.
+
 ### Frontend Setup
 1. Navigate to the frontend directory
 2. Install dependencies: `flutter pub get`
