@@ -36,11 +36,3 @@ A mobile application designed to help users improve their social skills and mann
 1. Navigate to the frontend directory
 2. Install dependencies: `flutter pub get`
 3. Run the app: `flutter run`
-
-## Contributing
-
-Please read our contributing guidelines before submitting pull requests.
-
-## License
-
-This project is licensed under the MIT License.
