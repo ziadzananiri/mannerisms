@@ -27,16 +27,27 @@ class HttpService {
   Future<dynamic> get(String endpoint, {bool requiresAuth = true}) async {
     try {
       final headers = await _getHeaders(requiresAuth: requiresAuth);
-      final response = await _client.get(
+      final response = await _authInterceptor.handleRequest(() => _client.get(
         Uri.parse('${AppConstants.apiUrl}$endpoint'),
         headers: headers,
-      );
+      ));
 
       if (response.statusCode == 200) {
         return jsonDecode(response.body);
-      } else {
-        throw Exception('Failed to get data: ${response.statusCode}');
+      } else if (response.statusCode == 401) {
+        final refreshed = await _authInterceptor.refreshToken();
+        if (refreshed) {
+          final newHeaders = await _getHeaders(requiresAuth: requiresAuth);
+          final retryResponse = await _client.get(
+            Uri.parse('${AppConstants.apiUrl}$endpoint'),
+            headers: newHeaders,
+          );
+          if (retryResponse.statusCode == 200) {
+            return jsonDecode(retryResponse.body);
+          }
+        }
       }
+      throw Exception('Failed to get data: ${response.statusCode}');
     } catch (e) {
       throw Exception('Failed to get data: $e');
     }
@@ -47,17 +58,29 @@ class HttpService {
       final defaultHeaders = await _getHeaders(requiresAuth: requiresAuth);
       final finalHeaders = headers ?? defaultHeaders;
       
-      final response = await _client.post(
+      final response = await _authInterceptor.handleRequest(() => _client.post(
         Uri.parse('${AppConstants.apiUrl}$endpoint'),
         headers: finalHeaders,
         body: jsonEncode(body),
-      );
+      ));
 
       if (response.statusCode == 200) {
         return jsonDecode(response.body);
-      } else {
-        throw Exception('Failed to post data: ${response.statusCode}');
+      } else if (response.statusCode == 401) {
+        final refreshed = await _authInterceptor.refreshToken();
+        if (refreshed) {
+          final newHeaders = await _getHeaders(requiresAuth: requiresAuth);
+          final retryResponse = await _client.post(
+            Uri.parse('${AppConstants.apiUrl}$endpoint'),
+            headers: newHeaders,
+            body: jsonEncode(body),
+          );
+          if (retryResponse.statusCode == 200) {
+            return jsonDecode(retryResponse.body);
+          }
+        }
       }
+      throw Exception('Failed to post data: ${response.statusCode}');
     } catch (e) {
       throw Exception('Failed to post data: $e');
     }

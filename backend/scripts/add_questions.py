@@ -116,14 +116,14 @@ def add_questions():
             "tag": "Greetings - 1"
         },
         {
-            "question": "When attending a formal East Asian dinner, what should you do with chopsticks?",
+            "question": "When attending a formal East Asian dinner, what should you do with chopsticks when not eating?",
             "options": [
-                "Place them parallel on the chopstick rest when not eating",
+                "Place them parallel on the chopstick rest",
                 "Stick them vertically in rice",
                 "Cross them on the plate",
                 "Leave them on the table"
             ],
-            "correct_answer": "Place them parallel on the chopstick rest when not eating",
+            "correct_answer": "Place them parallel on the chopstick rest",
             "explanation": "In East Asian dining etiquette, chopsticks should be placed parallel on the chopstick rest when not in use. Sticking them vertically in rice is considered disrespectful as it resembles funeral rituals.",
             "category": "Dining",
             "difficulty": "Medium",

@@ -43,6 +43,9 @@ class AuthInterceptor {
         final data = json.decode(response.body);
         await saveTokens(data['access_token'], data['refresh_token']);
         return true;
+      } else if (response.statusCode == 401) {
+        await deleteTokens();
+        return false;
       }
       return false;
     } catch (e) {
@@ -66,13 +69,10 @@ class AuthInterceptor {
     try {
       final response = await request();
       if (response.statusCode == 401) {
-        // Token expired, try to refresh
         final refreshed = await refreshToken();
         if (refreshed) {
-          // Retry the request with new token
           return await request();
         } else {
-          // Refresh failed, throw exception to handle logout
           throw Exception('Token refresh failed');
         }
       }

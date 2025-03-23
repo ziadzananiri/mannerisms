@@ -57,7 +57,7 @@ class _HomeViewState extends State<HomeView> {
         ScaffoldMessenger.of(context).clearSnackBars();
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(result['correct'] ? 'Correct!' : 'Incorrect'),
+            content: Text(result['correct'] ? 'Correct!' : 'Not quite right...'),
             backgroundColor: result['correct'] ? Colors.green : Colors.red,
             duration: const Duration(seconds: 2),
           ),
