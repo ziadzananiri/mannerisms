@@ -33,7 +33,7 @@ A mobile application designed to help users improve their social skills, manneri
 3. Install dependencies: `pip install -r requirements.txt`
 4. Run the server: `uvicorn app.main:app --reload`
 
-Note: You will need a .env file containing a MONGO_URI and JWT_SECRET string.
+Note: You will need a .env file containing a MONGO_URI, JWT_SECRET, OPEN_AI_API_KEY, and OPEN_AI_MODEL string.
 
 ### Frontend Setup
 1. Navigate to the frontend directory
