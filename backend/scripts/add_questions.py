@@ -1,4 +1,4 @@
-from app.models import Question
+from app.models import AdvancedQuestion, Question
 from app.database import connect_db
 from datetime import datetime
 from collections import defaultdict
@@ -331,6 +331,29 @@ def add_questions():
         }
     ]
 
+    advanced_questions = [
+        {
+            "question": "In Western culture, how does the idea of individualism shape personal relationships?",
+            "correct_answer": "Individualism encourages people to prioritize personal goals and self-expression, which can lead to both strong personal relationships and conflicts when interests clash.",
+            "culture": "western"
+        },
+        {
+            "question": "In East Asian cultures, why is maintaining harmony important in social interactions?",
+            "correct_answer": "Maintaining harmony helps to avoid conflict and ensures smooth relationships, reflecting the value placed on community and respect for others.",
+            "culture": "east_asian"
+        },
+        {
+            "question": "In South Asian culture, how do family values influence personal decisions?",
+            "correct_answer": "Family values often guide personal decisions, emphasizing respect for elders and collective well-being over individual desires.",
+            "culture": "south_asian"
+        },
+        {
+            "question": "In Middle Eastern cultures, what role does hospitality play in social gatherings?",
+            "correct_answer": "Hospitality is a key aspect of social gatherings, reflecting generosity and respect for guests, which strengthens community bonds.",
+            "culture": "middle_eastern"
+        }
+    ]
+
     # Add questions to database
     for q in questions:
         category_counts[q['culture']][q['category']] += 1
@@ -338,6 +361,11 @@ def add_questions():
         question = Question(**q)
         question.save()
         print(f"Added question: {q['question']} with tag: {q['tag']}")
+
+    for q in advanced_questions:
+        question = AdvancedQuestion(**q)
+        question.save()
+        print(f"Added advanced question: {q['question']}")
 
 if __name__ == "__main__":
     add_questions() 

@@ -31,6 +31,10 @@ class CultureViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  bool isAvanced() {
+    return _isAdvanced;
+  }
+
   bool canProceed() {
     return _selectedCulture != null;
   }

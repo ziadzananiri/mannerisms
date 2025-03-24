@@ -7,6 +7,7 @@ class AppConstants {
   static const String questionsEndpoint = '/questions';
   static const String progressEndpoint = '/progress';
   static const String progressUpdateEndpoint = '/progress/update';
+  static const String advancedQuestionEndpoint = '/advancedQuestion';
 
   // Storage Keys
   static const String accessTokenKey = 'access_token';
@@ -18,4 +19,6 @@ class AppConstants {
   static const String settingsRoute = '/settings';
   static const String loginRoute = '/login';
   static const String cultureRoute = '/culture';
+  static const String advancedRoute = '/advanced';
+  static const String mainRoute = '/main';
 } 

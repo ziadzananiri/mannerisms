@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:mannerisms/questions/viewmodel/home_viewmodel.dart';
 import 'package:mannerisms/services/auth_viewmodel.dart';
-import 'package:mannerisms/questions/model/question_model.dart';
 import 'package:mannerisms/services/auth_interceptor.dart';
 import 'package:mannerisms/login/view/login_view.dart';
 import 'package:mannerisms/home/view/culture_selection_view.dart';
@@ -38,7 +37,7 @@ class _HomeViewState extends State<HomeView> {
     });
   }
 
-  Future<void> _handleAnswer(QuestionModel question, String answer) async {
+  Future<void> _handleAnswer(String questionId, String answer) async {
     if (_isAnswering) return;
     
     final authViewModel = context.read<AuthViewModel>();
@@ -60,7 +59,7 @@ class _HomeViewState extends State<HomeView> {
     try {
       final headers = await _authInterceptor.getAuthHeaders();
       final result = await homeViewModel.submitAnswer(
-        question.id,
+        questionId,
         answer,
         headers,
       );
@@ -174,7 +173,7 @@ class _HomeViewState extends State<HomeView> {
                         child: SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
-                            onPressed: _isAnswering ? null : () => _handleAnswer(question, option),
+                            onPressed: _isAnswering ? null : () => _handleAnswer(question.id, option),
                             style: ElevatedButton.styleFrom(
                               padding: const EdgeInsets.symmetric(vertical: 12),
                               backgroundColor: selectedAnswer == option ? answerResult == 'Correct' ? Colors.green : Colors.red : Theme.of(context).colorScheme.primary,

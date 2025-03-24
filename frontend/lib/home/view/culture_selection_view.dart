@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mannerisms/utils/constants.dart';
 import 'package:provider/provider.dart';
 import 'package:mannerisms/home/viewmodel/culture_viewmodel.dart';
-import 'package:mannerisms/main_screen.dart';
 
 class CultureSelectionView extends StatelessWidget {
   const CultureSelectionView({super.key});
@@ -102,10 +102,17 @@ class CultureSelectionView extends StatelessWidget {
                 const SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: viewModel.canProceed()
-                      ? () => Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(builder: (_) => const MainScreen()),
-                          )
+                      ? !viewModel.isAdvanced
+                          ? () => Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              AppConstants.mainRoute,
+                              (Route<dynamic> route) => false,
+                            )
+                          : () => Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              AppConstants.advancedRoute,
+                              (Route<dynamic> route) => false,
+                            )
                       : null,
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(vertical: 16),

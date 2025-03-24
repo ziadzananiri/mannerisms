@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mannerisms/home/view/culture_selection_view.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mannerisms/utils/service_locator.dart';
 import 'package:mannerisms/utils/navigation_service.dart';
 import 'package:mannerisms/login/view/login_view.dart';
-import 'package:mannerisms/main_screen.dart';
 import 'package:mannerisms/services/auth_viewmodel.dart';
 import 'package:mannerisms/utils/theme_provider.dart';
 
@@ -33,7 +33,7 @@ class AuthWrapper extends StatelessWidget {
           );
         }
         return authViewModel.isAuthenticated 
-          ? const MainScreen() 
+          ? const CultureSelectionView()
           : const LoginView();
       },
     );

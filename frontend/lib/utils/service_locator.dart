@@ -13,6 +13,8 @@ import 'package:mannerisms/home/repository/culture_repository.dart';
 import 'package:mannerisms/home/viewmodel/culture_viewmodel.dart';
 import 'package:mannerisms/menu/viewmodel/menu_viewmodel.dart';
 import 'package:mannerisms/utils/theme_provider.dart';
+import 'package:mannerisms/advanced/viewmodel/advanced_viewmodel.dart';
+import 'package:mannerisms/advanced/repository/advanced_repository.dart';
 class ServiceLocator {
   static final ServiceLocator _instance = ServiceLocator._internal();
   factory ServiceLocator() => _instance;
@@ -32,6 +34,8 @@ class ServiceLocator {
   late final CultureViewModel cultureViewModel;
   late final MenuViewModel menuViewModel;
   late final ThemeProvider themeProvider;
+  late final AdvancedViewModel advancedViewModel;
+  late final AdvancedRepository advancedRepository;
   void init() {
     // Initialize services
     authInterceptor = AuthInterceptor();
@@ -42,6 +46,7 @@ class ServiceLocator {
     cultureRepository = CultureRepository();
     loginRepository = LoginRepository();
     signupRepository = SignupRepository();
+    advancedRepository = AdvancedRepository();
     
     // Initialize view models
     authViewModel = AuthViewModel();
@@ -58,6 +63,7 @@ class ServiceLocator {
     );
     menuViewModel = MenuViewModel();
     themeProvider = ThemeProvider();
+    advancedViewModel = AdvancedViewModel(advancedRepository, cultureViewModel);
   }
 
   List<ChangeNotifierProvider> get providers => [
@@ -69,5 +75,6 @@ class ServiceLocator {
     ChangeNotifierProvider<CultureViewModel>.value(value: cultureViewModel),
     ChangeNotifierProvider<MenuViewModel>.value(value: menuViewModel),
     ChangeNotifierProvider<ThemeProvider>.value(value: themeProvider),
+    ChangeNotifierProvider<AdvancedViewModel>.value(value: advancedViewModel),
   ];
 } 

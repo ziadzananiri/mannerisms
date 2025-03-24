@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mannerisms/advanced/view/advanced_view.dart';
 import 'package:mannerisms/login/view/login_view.dart';
+import 'package:mannerisms/main_screen.dart';
 import 'package:mannerisms/questions/view/home_view.dart';
 import 'package:mannerisms/profile/view/profile_view.dart';
 import 'package:mannerisms/menu/view/menu_view.dart';
@@ -25,6 +27,10 @@ class NavigationService {
         return MaterialPageRoute(builder: (_) => const MenuView());
       case AppConstants.loginRoute:
         return MaterialPageRoute(builder: (_) => const LoginView());
+      case AppConstants.advancedRoute:
+        return MaterialPageRoute(builder: (_) => const AdvancedView());
+      case AppConstants.mainRoute:
+        return MaterialPageRoute(builder: (_) => const MainScreen());
       default:
         return MaterialPageRoute(builder: (_) => const CultureSelectionView());
     }

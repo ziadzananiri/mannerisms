@@ -27,6 +27,16 @@ class Question(Document):
         'indexes': ['category', 'difficulty', 'tag']
     }
 
+class AdvancedQuestion(Document):
+    question = StringField(required=True)
+    correct_answer = StringField(required=True)
+    culture = StringField(required=True)
+
+    meta = {
+        'collection': 'advanced_questions',
+        'indexes': ['culture', 'question']
+    }
+
 class UserProgress(Document):
     user = ReferenceField(User, required=True)
     score = IntField(default=0, required=True)
