@@ -1,6 +1,7 @@
 from mongoengine import connect
 import os
 from dotenv import load_dotenv
+from pytz import timezone
 
 # Load environment variables
 load_dotenv()
@@ -14,7 +15,7 @@ def connect_db():
     """Connect to MongoDB using the URI from environment variables."""
     try:
         # Add database name to the connection
-        connect(host=MONGO_URI, db="mannerisms")
+        connect(host=MONGO_URI, db="mannerisms", tz_aware=True, tzinfo=timezone('US/Eastern'))
         print("Successfully connected to MongoDB")
     except Exception as e:
         print(f"Error connecting to MongoDB: {e}")

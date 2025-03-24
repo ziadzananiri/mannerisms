@@ -157,6 +157,6 @@ class ProfileViewState extends State<ProfileView> {
   }
 
   String _formatDate(DateTime date) {
-    return '${date.day}/${date.month}/${date.year} ${date.hour}:${date.minute}';
+    return '${date.day}/${date.month}/${date.year} ${date.hour}:${date.minute} ${date.hour > 12 ? 'PM' : 'AM'}';
   }
 } 
