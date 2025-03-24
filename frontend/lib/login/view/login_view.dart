@@ -29,9 +29,18 @@ class LoginViewState extends State<LoginView> {
             _emailController.text,
             _passwordController.text,
           );
-      
+
       if (success && mounted) {
         Navigator.pushReplacementNamed(context, AppConstants.cultureRoute);
+      }
+
+      if (!success && mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Invalid username or password'),
+            backgroundColor: Colors.red,
+          ),
+        );
       }
     }
   }
@@ -96,7 +105,8 @@ class LoginViewState extends State<LoginView> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const SignupView()),
+                      MaterialPageRoute(
+                          builder: (context) => const SignupView()),
                     );
                   },
                   child: const Text('Don\'t have an account? Sign Up'),
